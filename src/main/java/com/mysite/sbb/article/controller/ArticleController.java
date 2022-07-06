@@ -35,4 +35,15 @@ public class ArticleController {
         Optional<Article> article = articleRepository.findById(id);
         return article.orElse(null);
     }
+
+    @RequestMapping("/doModify")
+    @ResponseBody
+    public Article showDoModify(long id, String title) {
+        Article article = articleRepository.findById(id).get();
+        if(title != null) {
+            article.setTitle(title);
+        }
+        articleRepository.save(article);
+        return article;
+    }
 }
