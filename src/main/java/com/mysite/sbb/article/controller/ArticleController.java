@@ -46,4 +46,11 @@ public class ArticleController {
         articleRepository.save(article);
         return article;
     }
+
+    @RequestMapping("/doDelete")
+    @ResponseBody
+    public String showDoDelete(long id) {
+        articleRepository.deleteById(id);
+        return "%d번 게시물이 삭제되었습니다.".formatted(id);
+    }
 }
